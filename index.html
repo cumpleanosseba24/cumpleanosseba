@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación de Cumpleaños de Elmo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Bangers&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            background-image: url("{{ url_for('static', filename='images/IMG_9309.jpg') }}"); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            color: #3498db;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .invitation-text {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            background-color: #f8f8f8;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .radio-group {
+            margin-bottom: 1rem;
+        }
+
+        .radio-option {
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .additional-options {
+            display: none;
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        #success-message {
+            display: none;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            form {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Festejo de Cumpleaños de Elmo</h1>
+        <p class="invitation-text">
+            Estás invitado a esperar las 12  el día lunes 16 a partir de las 21hs en mi house
+        </p>
+        <form id="invitation-form">
+            <div class="form-group">
+                <label for="nombre">Nombre de Tulei</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: Tulei Rios" required>
+            </div>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="opcion1" name="opcion" value="Opcion1" required>
+                    <label for="opcion1">Confirmo asistencia ⚽☝🏻</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="opcion2" name="opcion" value="Opcion2">
+                    <label for="opcion2">Ausente por 💧</label>
+                </div>
+            </div>
+            <div class="additional-options" id="additional-options">
+                <div class="radio-option">
+                    <input type="radio" id="opcion3" name="acompañante" value="Con Acompañante">
+                    <label for="opcion3">Con Acompañante</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="opcion4" name="acompañante" value="Solo">
+                    <label for="opcion4">Solo</label>
+                </div>
+            </div>
+            <button type="submit">Enviar y a esperar mitami</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleAdditionalOptions() {
+            const opcion1 = document.getElementById('opcion1');
+            const additionalOptions = document.getElementById('additional-options');
+            additionalOptions.style.display = opcion1.checked ? 'block' : 'none';
+        }
+
+        document.querySelectorAll('input[name="opcion"]').forEach(radio => {
+            radio.addEventListener('change', toggleAdditionalOptions);
+        });
+    </script>
+</body>
+</html>
